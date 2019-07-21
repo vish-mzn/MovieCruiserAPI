@@ -1,0 +1,27 @@
+.movie-thumbnail {
+    width: 350px;
+    margin: 20px;
+}
+
+.movie-image {
+    height: 370px;
+    cursor: pointer;
+}
+
+.movie-overview {
+    height: 80px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.movie-overview::-webkit-scrollbar {
+    width: 2px;
+    background: gray;
+}
+
+.movie-actions {
+    text-align: right;
+}
+
+.card-header {
+    height: 70px;
+}

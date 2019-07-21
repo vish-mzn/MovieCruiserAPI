@@ -1,0 +1,48 @@
+version: '3.2'
+services:
+  authentication:
+   image: user-app
+   build: authenticationserver/
+   restart: always
+   network_mode: host
+   container_name: auth-docker
+   depends_on:
+     - mysql
+   ports:
+     - 8086:8086
+   expose:
+     - 8086
+
+  spring:
+   image: movie-app
+   build: moviecruiserserver/
+   restart: always
+   network_mode: host
+   container_name: spring-docker
+   ports:
+     - 8085:8085
+   expose:
+     - 8085
+   depends_on:
+     - mysql
+
+  mysql:
+   image: mysql:5.5
+   network_mode: host
+   container_name: mysql-docker
+   ports:
+     - "3306:3306"
+   environment:
+     MYSQL_ROOT_PASSWORD: root
+     MYSQL_DATABASE: fse_movie_db
+     MYSQL_USER: app_root
+     MYSQL_PASSWORD: root123
+   
+  angular:
+    image: angular-app
+    build: MovieCruiserFrontend/
+    network_mode: host
+    container_name: angular-docker
+    ports:
+      - 4200:4200
+
